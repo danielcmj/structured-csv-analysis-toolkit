@@ -1,4 +1,5 @@
 from .loader import MeasurementData
+import os
 
 class ExperimentDataset:
     def __init__(self):
@@ -11,11 +12,11 @@ class ExperimentDataset:
         """Import all .txt files under `folder` into the dataset."""
         for root, _, files in os.walk(folder):
             for f in files:
-                if f.lower().endswith('.txt'):
-                    self.add(MeasurementData(
-                        os.path.join(root, f), skiprows
-                    ))
-        self.compute_WB_outputs()
+                  name = os.path.splitext(f)[0]
+                  # only load measurement files that start with wafer id (e.g., W9122_...)
+                  if f.lower().endswith(".txt") and name.upper().startswith("W"):
+                        self.add(MeasurementData(os.path.join(root, f), skiprows))
+            self.compute_WB_outputs()
         return self
 
     @classmethod
