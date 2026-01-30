@@ -1,3 +1,5 @@
+import numpy as np
+
 def debug_reading(ds, max_samples=5, n_raw=10, n_df=5):
     """
     For up to `max_samples` MeasurementData in `ds`,

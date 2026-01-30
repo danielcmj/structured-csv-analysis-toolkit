@@ -29,4 +29,5 @@ Thumbs.db
 *.xls
 *.json
 
-
+# Local confidential test data
+GroupBySample/
